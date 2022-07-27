@@ -1,0 +1,382 @@
+﻿<UserControl x:Class="UI_Layer.Views.DashboardView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:UI_Layer.Views"
+             xmlns:viewModels="clr-namespace:UI_Layer.ViewModels"
+             xmlns:converters="clr-namespace:UI_Layer.Converters"
+             xmlns:gl="clr-namespace:System.Globalization;assembly=mscorlib"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800" HorizontalAlignment="Center" Padding="5 2 5 5" >
+    <UserControl.Resources>
+        <converters:DashboardTemplateSelector x:Key="templateSelector"/>
+        <converters:DashboradReturnConverter x:Key="returnConverter"/>
+        <Style TargetType="ListBoxItem" x:Key="CustomListBoxItem">
+            <Setter Property="SnapsToDevicePixels"
+                    Value="true" />
+            <Setter Property="OverridesDefaultStyle"
+                    Value="true" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ListBoxItem">
+                        <Border x:Name="Border"
+                                 Padding="5"
+                                 SnapsToDevicePixels="true" 
+                                CornerRadius="5" Margin="5" Background="Transparent" RenderTransformOrigin="0.5 0.5">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="SelectionStates">
+                                    <VisualState x:Name="Unselected" />
+                                    <VisualState x:Name="Selected">
+                                        <!--<Storyboard>
+                                            <ColorAnimationUsingKeyFrames Storyboard.TargetName="Border"
+                                                Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)">
+                                                <EasingColorKeyFrame KeyTime="0" Value="#c57a2b00"/>
+                                            </ColorAnimationUsingKeyFrames>
+                                        </Storyboard>-->
+                                    </VisualState>
+                                    <VisualState x:Name="SelectedUnfocused">
+                                        <!--<Storyboard>
+                                            <ColorAnimationUsingKeyFrames Storyboard.TargetName="Border"
+                                                Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)">
+                                                <EasingColorKeyFrame KeyTime="0" Value="#aa514e5c" />
+                                            </ColorAnimationUsingKeyFrames>
+                                        </Storyboard>-->
+                                    </VisualState>
+                                </VisualStateGroup>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal" />
+                                    <VisualState x:Name="MouseOver">
+                                        <!--<Storyboard>
+                                            <ColorAnimationUsingKeyFrames Storyboard.TargetName="Border" 
+                                                                          Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)">
+                                                <EasingColorKeyFrame KeyTime="0" Value="#FFF"/>
+                                            </ColorAnimationUsingKeyFrames>
+                                        </Storyboard>-->
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <ContentPresenter />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Border" Property="Border.Background" Value="Gray"/>
+                            </Trigger>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter TargetName="Border" Property="Border.Background" Value="Gray"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="TextBlock">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Margin" Value="5 0 0 0"/>
+            <Setter Property="Height" Value="25"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+        <DataTemplate x:Key="BorrowListBoxTemplateReturned" DataType="{x:Type viewModels:BorrowViewModel}">
+            <GroupBox Header="{Binding ClientName}" Background="Transparent" Padding="0" Foreground="White" FontWeight="Bold" FontSize="14">
+                <Border Background="#e1008800" CornerRadius="10" Padding="5">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" >
+                            <TextBlock  Text="Copy_Identifier:" />
+                            <TextBlock Text="{Binding CopyIdentifier}" HorizontalAlignment="Left" />
+                        </StackPanel>
+
+                        <TextBlock Grid.Row="1" Grid.Column="0" Text="Copy_ID:"  />
+                        <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding CopyID}" HorizontalAlignment="Stretch" />
+
+                        <TextBlock Grid.Row="2" Grid.Column="0" Text="Borrow Date:" />
+                        <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding BorrowDate, StringFormat={} {0:d}}" HorizontalAlignment="Stretch"/>
+
+                        <TextBlock Grid.Row="3" Grid.Column="0" Text="Return Date:"/>
+                        <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding ReturnDate, StringFormat={} {0:d}}" HorizontalAlignment="Left"/>
+
+                        <TextBlock Grid.Row="4" Grid.Column="0" Text="Actual Return Date:" />
+                        <TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding ActualReturnDate, StringFormat={} {0:d}}" HorizontalAlignment="Left"/>
+
+                        <TextBlock Grid.Row="5" Grid.Column="0" Text="Given By:" />
+                        <TextBlock Grid.Row="5" Grid.Column="1" Text="{Binding GivenBy}" HorizontalAlignment="Left"/>
+
+                        <TextBlock Grid.Row="6" Grid.Column="0" Text="Returned By:" />
+                        <TextBlock Grid.Row="6" Grid.Column="1" Text="{Binding ReturnedBy}" HorizontalAlignment="Left"/>                        
+                    </Grid>
+                </Border>
+            </GroupBox>
+        </DataTemplate>
+        <DataTemplate x:Key="BorrowListBoxTemplateLate" DataType="{x:Type viewModels:BorrowViewModel}">
+            <GroupBox Header="{Binding ClientName}" Background="Transparent" Padding="0" Foreground="White" FontWeight="Bold" FontSize="14">
+                <Border Background="#e1ff3344" CornerRadius="10" Padding="5">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" >
+                            <TextBlock  Text="Copy_Identifier:" />
+                            <TextBlock Text="{Binding CopyIdentifier}" HorizontalAlignment="Left" />
+                        </StackPanel>
+
+                        <TextBlock Grid.Row="1" Grid.Column="0" Text="Copy_ID:"  />
+                        <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding CopyID}" HorizontalAlignment="Stretch" />
+
+                        <TextBlock Grid.Row="2" Grid.Column="0" Text="Borrow Date:" />
+                        <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding BorrowDate, StringFormat={} {0:d}}" HorizontalAlignment="Stretch"/>
+
+                        <TextBlock Grid.Row="3" Grid.Column="0" Text="Return Date:"/>
+                        <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding ReturnDate, StringFormat={} {0:d}}" HorizontalAlignment="Left"/>
+
+                        <TextBlock Grid.Row="5" Grid.Column="0" Text="Given By:" />
+                        <TextBlock Grid.Row="5" Grid.Column="1" Text="{Binding GivenBy}" HorizontalAlignment="Left"/>
+
+                        <TextBlock Grid.Row="7" Grid.Column="0" Text="Return" VerticalAlignment="Center"/>
+                        <Button x:Name="returnButton" Grid.Row="7" Grid.Column="1" Content="Return" Style="{StaticResource AddEditButtons}" HorizontalAlignment="Left"
+                                Width="70" Height="30" FontWeight="Normal">
+                            <Button.Triggers>
+                                <EventTrigger RoutedEvent="Button.Click">
+                                    <EventTrigger.Actions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <BooleanAnimationUsingKeyFrames Storyboard.TargetName="myPopUp"
+                                                                                        Storyboard.TargetProperty="IsOpen">
+                                                    <DiscreteBooleanKeyFrame KeyTime="0:0:0" Value="True"/>
+                                                </BooleanAnimationUsingKeyFrames>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </EventTrigger.Actions>
+                                </EventTrigger>
+                            </Button.Triggers>
+                        </Button>
+                        <Popup Grid.Row="7" x:Name="myPopUp" PlacementTarget="{Binding ElementName=returnButton}"  
+                               StaysOpen="False" PopupAnimation="Slide" HorizontalOffset="90" VerticalOffset="-20"
+                               Height="130" Width="390" AllowsTransparency="True" HorizontalAlignment="Center" >
+                            <Border Background="#e2121212" CornerRadius="10" HorizontalAlignment="Stretch" Margin="0 25 0 0" Padding="15">
+                                <StackPanel VerticalAlignment="Center">
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 0 0 10">
+                                        <TextBlock Text="Returned by:" VerticalAlignment="Center"/>
+                                        <ComboBox ItemsSource="{Binding RelativeSource={RelativeSource AncestorType=UserControl}, Path=DataContext.Employees}" 
+                                                  SelectedItem="{Binding RelativeSource={RelativeSource AncestorType=UserControl},Path=DataContext.SelectedEmployee}"
+                                                  Style="{StaticResource MyComboBox}" ItemContainerStyle="{StaticResource ComboBoxItemContainerStyle}" IsEditable="True" Width="250" 
+                                                  Height="30" Margin="10 0 10 0" VerticalAlignment="Center" VerticalContentAlignment="Center" FontWeight="Normal">
+                                            <ComboBox.ItemTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock Text="{Binding}" FontWeight="Normal" Foreground="White" Margin="1"/>
+                                                </DataTemplate>
+                                            </ComboBox.ItemTemplate>
+                                        </ComboBox>
+                                    </StackPanel>
+                                    <Button Style="{StaticResource AddEditButtons}" Margin="0" Width="70" Content="Return" HorizontalAlignment="Center"
+                                            VerticalAlignment="Center" Command="{Binding RelativeSource={RelativeSource AncestorType=UserControl},Path=DataContext.BorrowReturnCommand}" CommandParameter="value"/>
+                                </StackPanel>
+                            </Border>
+                        </Popup>
+
+
+                    </Grid>
+                </Border>
+            </GroupBox>
+        </DataTemplate>
+        <DataTemplate x:Key="BorrowListBoxTemplateNormal" DataType="{x:Type viewModels:BorrowViewModel}">
+            <GroupBox Header="{Binding ClientName}" Background="Transparent" Padding="0" Foreground="White" FontWeight="Bold" FontSize="14">
+                <Border Background="#e1aa8800" CornerRadius="10" Padding="5">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" >
+                            <TextBlock  Text="Copy_Identifier:" />
+                            <TextBlock Text="{Binding CopyIdentifier}" HorizontalAlignment="Left" />
+                        </StackPanel>
+
+                        <TextBlock Grid.Row="1" Grid.Column="0" Text="Copy_ID:"  />
+                        <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding CopyID}" HorizontalAlignment="Stretch" />
+
+                        <TextBlock Grid.Row="2" Grid.Column="0" Text="Borrow Date:" />
+                        <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding BorrowDate, StringFormat={}{0:d}, ConverterCulture={x:Static gl:CultureInfo.CurrentCulture}}" HorizontalAlignment="Stretch"/>
+
+                        <TextBlock Grid.Row="3" Grid.Column="0" Text="Return Date:"/>
+                        <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding ReturnDate, StringFormat={} {0:d}, ConverterCulture={x:Static gl:CultureInfo.CurrentCulture}}" HorizontalAlignment="Left"/>                       
+
+                        <TextBlock Grid.Row="5" Grid.Column="0" Text="Given By:" />
+                        <TextBlock Grid.Row="5" Grid.Column="1" Text="{Binding GivenBy}" HorizontalAlignment="Left"/>
+
+                        <TextBlock Grid.Row="7" Grid.Column="0" Text="Return" VerticalAlignment="Center"/>
+                        <Button x:Name="returnButton" Grid.Row="7" Grid.Column="1" Content="Return" Style="{StaticResource AddEditButtons}" HorizontalAlignment="Left"
+                                Width="70" Height="30" FontWeight="Normal">
+                            <Button.Triggers>
+                                        <EventTrigger RoutedEvent="Button.Click">
+                                            <EventTrigger.Actions>
+                                                <BeginStoryboard>
+                                                    <Storyboard>
+                                                        <BooleanAnimationUsingKeyFrames Storyboard.TargetName="myPopUp"
+                                                                                        Storyboard.TargetProperty="IsOpen">
+                                                            <DiscreteBooleanKeyFrame KeyTime="0:0:0" Value="True"/>
+                                                        </BooleanAnimationUsingKeyFrames>                                                
+                                            </Storyboard>
+                                                </BeginStoryboard>
+                                            </EventTrigger.Actions>
+                                        </EventTrigger>
+                            </Button.Triggers>
+                        </Button>
+                        <Popup Grid.Row="7" x:Name="myPopUp" PlacementTarget="{Binding ElementName=returnButton}"  
+                               StaysOpen="False" PopupAnimation="Slide" HorizontalOffset="90" VerticalOffset="-20"
+                               Height="130" Width="390" AllowsTransparency="True" HorizontalAlignment="Center" >
+                            <Border Background="#e2121212" CornerRadius="10" HorizontalAlignment="Stretch" Margin="0 25 0 0" Padding="15">
+                                <StackPanel VerticalAlignment="Center">
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 0 0 10">
+                                        <TextBlock Text="Returned by:" VerticalAlignment="Center"/>
+                                        <ComboBox ItemsSource="{Binding RelativeSource={RelativeSource AncestorType=UserControl},Path=DataContext.Employees}" 
+                                                  SelectedItem="{Binding RelativeSource={RelativeSource AncestorType=UserControl},Path=DataContext.SelectedEmployee}"
+                                                  Style="{StaticResource MyComboBox}" ItemContainerStyle="{StaticResource ComboBoxItemContainerStyle}" IsEditable="True" Width="250" 
+                                                  Height="30" Margin="10 0 10 0" VerticalAlignment="Center" VerticalContentAlignment="Center" FontWeight="Normal">
+                                            <ComboBox.ItemTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock Text="{Binding}" FontWeight="Normal" Foreground="White" Margin="1"/>
+                                                </DataTemplate>
+                                            </ComboBox.ItemTemplate>
+                                        </ComboBox>
+                                    </StackPanel>
+                                        <Button Style="{StaticResource AddEditButtons}" Margin="0" Width="70" Content="Return" HorizontalAlignment="Center" 
+                                                VerticalAlignment="Center" 
+                                                Command="{Binding RelativeSource={RelativeSource AncestorType=UserControl},Path=DataContext.BorrowReturnCommand}" 
+                                                CommandParameter="value"/>
+                                </StackPanel>
+                            </Border>
+                        </Popup>
+                    </Grid>
+                </Border>
+            </GroupBox>
+        </DataTemplate>
+    </UserControl.Resources>
+    <Grid Background="Transparent" Width="1000">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Border Grid.Row="0" BorderBrush="White" BorderThickness="0 0 0 1" Margin="0 0 0 0" Padding="0 0 0 10">
+            <Grid >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="2*"/>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0" Grid.Column="0"  Text="Search by:"/>
+                
+                <TextBlock Grid.Row="1" Grid.Column="0" Text="Copy_ID"/>
+                <TextBox Style="{StaticResource TextBoxStyle}" Grid.Row="2" Grid.Column="0" Text="{Binding CopyIDFilter, UpdateSourceTrigger=PropertyChanged}"/>
+
+                <TextBlock Grid.Row="1" Grid.Column="1" Text="Copy Identifier"/>
+                <TextBox Style="{StaticResource TextBoxStyle}" Grid.Row="2" Grid.Column="1" Text="{Binding CopyIdentifierFilter, UpdateSourceTrigger=PropertyChanged}"/>
+
+                <TextBlock Grid.Row="1" Grid.Column="2" Text="Client name"/>
+                <TextBox Style="{StaticResource TextBoxStyle}" Grid.Row="2" Grid.Column="2" Text="{Binding ClientNameFilter, UpdateSourceTrigger=PropertyChanged}"/>
+
+                <TextBlock Grid.Row="1" Grid.Column="3" Text="Borrow date"/>
+                <TextBox Style="{StaticResource TextBoxStyle}" Grid.Row="2" Grid.Column="3" Text="{Binding BorrowDateFilter, UpdateSourceTrigger=PropertyChanged}"/>
+            </Grid>
+        </Border>
+        <ListBox Grid.Row="1" ItemsSource="{Binding AllBorrowsSearchable}" SelectedItem="{Binding SelectedBorrow}" HorizontalContentAlignment="Stretch"
+                 BorderThickness="0" Margin="0 0 0 5" Background="Transparent"
+                 ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalAlignment="Center">
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel Orientation="Horizontal"/>
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="ListBoxItem" BasedOn="{StaticResource CustomListBoxItem}">
+                    <Style.Triggers>
+                        <Trigger Property="IsKeyboardFocusWithin" Value="True">
+                            <Setter Property="IsSelected" Value="True"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </ListBox.ItemContainerStyle>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <ContentControl Content="{Binding UpdateSourceTrigger=PropertyChanged}" Opacity="1">
+                        <ContentControl.Style>
+                            <Style TargetType="ContentControl">
+                                <Setter Property="Opacity" Value="1"/>
+                                <Setter Property="Margin" Value="0 5 0 5"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Converter={StaticResource templateSelector}}" Value="Normal">
+                                        <Setter Property="ContentTemplate" Value="{StaticResource BorrowListBoxTemplateNormal}"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding Converter={StaticResource templateSelector}}" Value="Returned">
+                                        <Setter Property="ContentTemplate" Value="{StaticResource BorrowListBoxTemplateReturned}"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding Converter={StaticResource templateSelector}}" Value="Late">
+                                        <Setter Property="ContentTemplate" Value="{StaticResource BorrowListBoxTemplateLate}"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>                            
+                        </ContentControl.Style>
+                    </ContentControl>
+                    <DataTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter Property="ListBoxItem.Background" Value="Transparent"/>
+                        </Trigger>
+                    </DataTemplate.Triggers>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+    </Grid>
+</UserControl>

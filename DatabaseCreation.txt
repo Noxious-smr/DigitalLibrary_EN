@@ -1,0 +1,5 @@
+This is a .bak file.
+All you have to do is restore this in MSSQL Server as a device and all data will be there.
+And also don't forget your ConnectionString which you can insert in the file App.config that is 
+located in the UILayer folder.
+Thanx.

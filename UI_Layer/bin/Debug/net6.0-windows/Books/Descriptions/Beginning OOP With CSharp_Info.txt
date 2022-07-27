@@ -1,0 +1,16 @@
+ISBN_13: 9781118336922
+ISBN_10: 1118336925
+Page count: 624
+Published: November 6, 2012
+Publisher: Wiley
+Language: English
+Author: Jack Purdum
+Description: 
+The ideal beginner's guide to C# and object-oriented programming
+
+Wrox beginners' guides have the perfect formula for getting programming newcomers up and running. This one introduces beginners to object-oriented programming using C# to demonstrate all of the core constructs of this programming framework. Using real-world situations, you'll discover how to create, test, and deliver your programs and how to work with classes, arrays, collections, and all the elements of object-oriented programming.
+
+Covers exactly what beginners, even those with no prior programming experience, need to know to understand object-oriented programming and start writing programs in C# Explains the advantages and disadvantages of C#, and tips for understanding C# syntax Explores properties, encapsulation, and classes; value data types; operands and operators; errors and debugging; variables; and reference types Shows how to use statement repetition and program loops, understand arrays and collections, and write your own classes Also covers inheritance and polymorphism
+Beginning Object-Oriented Programming with C# uses the tried-and-true Wrox formula for making this popular programming method easy to learn.
+
+Source: Publisher

@@ -1,0 +1,132 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>disable</Nullable>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Images\AddView\AddViewBackground_01.jpg" />
+    <None Remove="Images\AddView\AddViewBackground_02.jpg" />
+    <None Remove="Images\Categories\Biology.png" />
+    <None Remove="Images\Categories\Chemistry.png" />
+    <None Remove="Images\Categories\Math.png" />
+    <None Remove="Images\Categories\Physics_001.png" />
+    <None Remove="Images\Categories\Programing.png" />
+    <None Remove="Images\Categories\Social.jpg" />
+    <None Remove="Images\MainWindow\AddButton.png" />
+    <None Remove="Images\MainWindow\banner.jpg" />
+    <None Remove="Images\MainWindow\Categories.png" />
+    <None Remove="Images\MainWindow\Categories_008.png" />
+    <None Remove="Images\MainWindow\Categories_02.png" />
+    <None Remove="Images\MainWindow\Categories_03.png" />
+    <None Remove="Images\MainWindow\Categories_04.png" />
+    <None Remove="Images\MainWindow\Categories_05.png" />
+    <None Remove="Images\MainWindow\Categories_06.png" />
+    <None Remove="Images\MainWindow\Categories_07.png" />
+    <None Remove="Images\MainWindow\Categories_Button.jpg" />
+    <None Remove="Images\MainWindow\EditButton.png" />
+    <None Remove="Images\MainWindow\Home.png" />
+    <None Remove="Images\MainWindow\HomeBackground.jpg" />
+    <None Remove="Images\MainWindow\HomeBackground_02.jpg" />
+    <None Remove="Images\MainWindow\Home_02.png" />
+    <None Remove="Images\MainWindow\Home_03.png" />
+    <None Remove="Images\MainWindow\ReportButton.png" />
+    <None Remove="Images\UpdateView\UpdateViewBG.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FontAwesome5" Version="2.1.6" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DataAccess\DataAccess.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\AddView\AddViewBackground_01.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\AddView\AddViewBackground_02.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Categories\Biology.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Categories\Chemistry.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Categories\Math.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Categories\Physics_001.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Categories\Programing.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Categories\Social.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\MainWindow\AddButton.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\MainWindow\banner.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\MainWindow\Categories.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\MainWindow\Categories_008.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\MainWindow\Categories_02.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\MainWindow\Categories_03.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\MainWindow\Categories_04.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\MainWindow\Categories_05.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\MainWindow\Categories_06.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\MainWindow\Categories_07.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\MainWindow\Categories_Button.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\MainWindow\EditButton.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\MainWindow\Home.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\MainWindow\HomeBackground.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\MainWindow\HomeBackground_02.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\MainWindow\Home_02.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\MainWindow\Home_03.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\MainWindow\ReportButton.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\UpdateView\UpdateViewBG.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,267 @@
+﻿<UserControl x:Class="UI_Layer.Views.AddView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:UI_Layer.Views"
+             xmlns:viewModels="clr-namespace:UI_Layer.ViewModels"
+             xmlns:models="clr-namespace:DomainLayer.Models;assembly=DomainLayer"
+             xmlns:fa="http://schemas.fontawesome.com/icons/"
+             xmlns:converters="clr-namespace:UI_Layer.Converters"
+             mc:Ignorable="d" 
+             d:DesignHeight="880" d:DesignWidth="800">
+
+    <UserControl.Background>
+        <ImageBrush ImageSource="/Images/AddView/AddViewBackground_02.jpg"/>
+    </UserControl.Background>
+    <UserControl.Resources>
+        <converters:StringToIntConverter x:Key="stringToIntConvert"/>
+        <converters:ISBNConverter x:Key="ISBN_Converter"/>
+        <Style TargetType="TextBox">
+            <Setter Property="SnapsToDevicePixels" Value="True"/>
+            <!--<Setter Property="OverridesDefaultStyle" Value="True"/>-->
+            <!--<Setter Property="FocusVisualStyle" Value="{x:Null}"/>-->
+            <Setter Property="Margin" Value="0 0 0 5"/>
+            <Setter Property="CaretBrush" Value="White"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Validation.ErrorTemplate">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <StackPanel>
+                            <AdornedElementPlaceholder VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TextBox}">
+                        <StackPanel>
+                            <Border 
+                                  Name="Border"
+                                  CornerRadius="2" 
+                                  Padding="2"
+                                  Background="Transparent"
+                                  BorderBrush="#888888"
+                                  BorderThickness="1">
+                                <ScrollViewer Margin="0" x:Name="PART_ContentHost"/>
+                            </Border>
+                            <ItemsControl ItemsSource="{TemplateBinding Validation.Errors}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock x:Name="errorTxtBlk" Foreground="White" Text="{Binding ErrorContent}" FontSize="10" Margin="0 5 0 5" 
+                                                   Background="#a1fc0000" Padding="2" RenderTransformOrigin="0.5 0.5">                                            
+                                            <TextBlock.RenderTransform>
+                                                <ScaleTransform x:Name="txtBlkScale" ScaleX="1" ScaleY="1"/>
+                                            </TextBlock.RenderTransform>
+                                            <TextBlock.Triggers>
+                                                <EventTrigger RoutedEvent="Loaded">
+                                                    <BeginStoryboard>
+                                                        <Storyboard>
+                                                            <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                                                                             From="0"
+                                                                             To="1"
+                                                                             Duration="0:0:2"
+                                                                             AutoReverse="False"/>
+                                                            <DoubleAnimation Storyboard.TargetName="txtBlkScale"
+                                                                             Storyboard.TargetProperty="(ScaleTransform.ScaleX)"
+                                                                             From="1"
+                                                                             To="1.05"
+                                                                             Duration="0:0:0.3"
+                                                                             AutoReverse="True"/>
+                                                            <DoubleAnimation Storyboard.TargetName="txtBlkScale"
+                                                                             Storyboard.TargetProperty="(ScaleTransform.ScaleY)"
+                                                                             To="2"
+                                                                             Duration="0:0:0.3"
+                                                                             AutoReverse="True"/>
+                                                        </Storyboard>
+                                                    </BeginStoryboard>
+                                                </EventTrigger>
+                                            </TextBlock.Triggers>
+                                        </TextBlock>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </StackPanel>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="BorderBrush" Value="White" TargetName="Border"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <GroupBox Header="Cabinet" Grid.Row="0" Grid.Column="0" Style="{StaticResource groupBoxStyle}">
+            <StackPanel Margin="10" >
+                <TextBlock Text="Cabinet name:" Margin="0 0 0 5"/>
+                <TextBox Name="CabinetTxtBox" Text="{Binding AddCabinet.Name, Mode=TwoWay, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
+                <TextBlock Text="{Binding AddCabinet.Message, UpdateSourceTrigger=PropertyChanged}" FontSize="10" Margin="0 5 0 5" 
+                           Background="#A3013d0a" Padding="2" RenderTransformOrigin="0.5 0.5" Style="{StaticResource errorTextBlock}"
+                           Visibility="{Binding AddCabinet.ShowMessage, Converter={StaticResource VisibilityConverter}, FallbackValue=Collapsed}"/>
+                <Button Content="Add" Style="{StaticResource AddEditButtons}" Command="{Binding AddCabinet.AddCabinetCommand}" CommandParameter="{Binding ElementName=CabinetTxtBox, Path=Text}"/>
+            </StackPanel>
+        </GroupBox>
+        <GroupBox Header="Shelf" Grid.Row="1" Grid.Column="0" Style="{StaticResource groupBoxStyle}">
+            <StackPanel Margin="10">
+                <TextBlock Text="Cabinet:" Margin="0 0 0 5"/>
+                <ComboBox ItemContainerStyle="{StaticResource ComboBoxItemContainerStyle}"  Style="{StaticResource MyComboBox}" Margin="0 0 0 5" 
+                          ItemsSource="{Binding AddCabinet.Cabinets}"
+                          SelectedItem="{Binding AddShelf.cabinetViewModel, UpdateSourceTrigger=PropertyChanged}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Cabinet name: "/>
+                                <TextBlock Text="{Binding CabinetName, StringFormat=[{0}]}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+
+                <TextBlock Text="Shelf number:" Margin="0 0 0 5"/>
+                <TextBox Name="ShelfTextBox" Text="{Binding AddShelf.Shelf_Nr, Mode=TwoWay, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"/>
+                <TextBlock Text="{Binding AddShelf.Message, UpdateSourceTrigger=PropertyChanged}" FontSize="10" Margin="0 5 0 5" 
+                           Background="#A3013d0a" Padding="2" RenderTransformOrigin="0.5 0.5" Style="{StaticResource errorTextBlock}"
+                           Visibility="{Binding AddShelf.ShowMessage, Converter={StaticResource VisibilityConverter}, FallbackValue=Collapsed}"/>
+                <Button Content="Add" Style="{StaticResource AddEditButtons}" Command="{Binding AddShelf.AddShelfCommand}" CommandParameter="{Binding ElementName=ShelfTextBox, Path=Text}"/>
+
+            </StackPanel>
+        </GroupBox>
+        <GroupBox Header="Category" Grid.Row="2" Grid.Column="0" Style="{StaticResource groupBoxStyle}">
+            <StackPanel Margin="10">
+                <TextBlock Text="Category name:" Margin="0 0 0 2"/>
+                <TextBox x:Name="CategoryTextBox" Text="{Binding AddCategory.Category_Name, Mode=TwoWay,ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"/>
+                <TextBlock Text="Image:" Margin="0 0 0 2" />
+                <DockPanel Margin="0 0 0 5" LastChildFill="True" HorizontalAlignment="Stretch">
+                    <Button DockPanel.Dock="Right" Style="{StaticResource BrowseButtonStyle}" Content="Browse" Margin="5,0,0,0"  Height="25" FontSize="12" Width="50"
+                                Command="{Binding AddCategory.GetImagePathCommand}" HorizontalAlignment="Right" BorderThickness="0"/>
+                    <TextBox x:Name="ImageTextBox" DockPanel.Dock="Top" Margin="0" Text="{Binding AddCategory.ImagePath,Mode=TwoWay,ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"/>
+                </DockPanel>
+                <TextBlock Text="{Binding AddCategory.Message, UpdateSourceTrigger=PropertyChanged}" FontSize="10" Margin="0 5 0 5" 
+                           Background="#A3013d0a" Padding="2" RenderTransformOrigin="0.5 0.5" Style="{StaticResource errorTextBlock}"
+                           Visibility="{Binding AddCategory.ShowMessage, Converter={StaticResource VisibilityConverter}, FallbackValue=Collapsed}"/>
+                <Button Style="{StaticResource AddEditButtons}" Content="Add" Command="{Binding AddCategory.AddCategoryCommand}" CommandParameter="{Binding ElementName=CategoryTextBox, Path=Text}"/>
+            </StackPanel>
+        </GroupBox>
+        <GroupBox Header="Book" Grid.Row="0" Grid.Column="1" Grid.RowSpan="3" Style="{StaticResource groupBoxStyle}">
+            <StackPanel Margin="10">
+                <TextBlock Text="Title:" Margin="0 0 0 2"/>
+                <TextBox Text="{Binding AddBook.Title, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnNotifyDataErrors=True}"/>
+
+                <TextBlock Text="ISBN_10:" Margin="0 0 0 2"/>
+                <TextBox Text="{Binding AddBook.ISBN_10, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, 
+                    ValidatesOnNotifyDataErrors=True, Converter={StaticResource ISBN_Converter}}"/>
+
+                <TextBlock Text="ISBN_13:" Margin="0 0 0 2"/>
+                <TextBox Text="{Binding AddBook.ISBN_13, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, 
+                    ValidatesOnNotifyDataErrors=True, Converter={StaticResource ISBN_Converter}}"/>
+
+                <TextBlock Text="Image:" Margin="0 0 0 2"/>
+                <DockPanel Margin="0 0 0 5" LastChildFill="True" HorizontalAlignment="Stretch">
+                    <Button DockPanel.Dock="Right" Style="{StaticResource BrowseButtonStyle}" Content="Browse" Margin="5,0,0,0"  Height="25" FontSize="12" Width="50"
+                                 HorizontalAlignment="Right" BorderThickness="0" Command="{Binding AddBook.GetImagePathCommand}"/>
+                    <TextBox x:Name="BookImageTextBox" DockPanel.Dock="Top" Margin="0" Text="{Binding AddBook.ImagePath, UpdateSourceTrigger=PropertyChanged}"/>
+                </DockPanel>
+
+                <TextBlock Text="Page count:" Margin="0 0 0 2"/>
+                <TextBox Text="{Binding AddBook.PageCount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, 
+                    ValidatesOnNotifyDataErrors=True, Converter={StaticResource stringToIntConvert}}"/>
+
+                <TextBlock Text="Publisher:" Margin="0 0 0 2"/>
+                <TextBox Text="{Binding AddBook.Publisher, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, 
+                    ValidatesOnNotifyDataErrors=True}"/>
+
+                <TextBlock Text="Published:" Margin="0 0 0 2"/>
+                <DatePicker CalendarStyle="{StaticResource CalendarStyle1}" Style="{StaticResource DatePickerStyle1}"
+                            SelectedDate="{Binding AddBook.Published, Mode=TwoWay}" Tag="{Binding AddBook.Today, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                <TextBlock Text="Author:" Margin="0 0 0 2"/>
+                <TextBox Text="{Binding AddBook.Author, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, 
+                    ValidatesOnNotifyDataErrors=True}"/>
+
+                <TextBlock Text="Language:" Margin="0 0 0 2"/>
+                <ComboBox Margin="0 0 0 5" ItemContainerStyle="{StaticResource ComboBoxItemContainerStyle}"  Style="{StaticResource MyComboBox}"
+                          ItemsSource="{Binding AddBook.Languages}" SelectedIndex="{Binding AddBook.ComboBoxIndex, Mode=OneTime}"
+                          SelectedItem="{Binding AddBook.Language, Mode=OneWayToSource, FallbackValue=English}"/>
+                <TextBlock Text="Description:" Margin="0 0 0 2" />
+                <DockPanel Margin="0 0 0 5" LastChildFill="True" HorizontalAlignment="Stretch">
+                    <Button DockPanel.Dock="Right" Style="{StaticResource BrowseButtonStyle}" Content="Browse" Margin="5,0,0,0"  
+                            Height="25" FontSize="12" Width="50" HorizontalAlignment="Right" BorderThickness="0"
+                            Command="{Binding AddBook.GetDescriptionPathCommand}"/>
+                    <TextBox x:Name="DescriptionTextBox" DockPanel.Dock="Top" Margin="0" Text="{Binding AddBook.Description, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, 
+                    ValidatesOnNotifyDataErrors=True}"/>
+                </DockPanel>
+
+                <TextBlock Text="Category:" Margin="0 0 0 5"/>
+                <ComboBox Margin="0 0 0 5" ItemContainerStyle="{StaticResource ComboBoxItemContainerStyle}"  Style="{StaticResource MyComboBox}"
+                          ItemsSource="{Binding AddCategory.Categories, Mode=OneWay}" DisplayMemberPath="CategoryName" SelectedItem="{Binding AddBook.Category}"
+                          SelectedIndex="{Binding AddBook.ComboBoxIndex, Mode=OneTime}"/>
+
+                <TextBlock Text="Cabinet:" Margin="0 0 0 5"/>
+                <ComboBox Margin="0 0 0 5" ItemContainerStyle="{StaticResource ComboBoxItemContainerStyle}"  Style="{StaticResource MyComboBox}"
+                          ItemsSource="{Binding AddCabinet.Cabinets}" DisplayMemberPath="CabinetName" IsSynchronizedWithCurrentItem="True"/>
+
+                <TextBlock Text="Shelf:" Margin="0 0 0 5"/>
+                <ComboBox Margin="0 0 0 5" ItemContainerStyle="{StaticResource ComboBoxItemContainerStyle}"  Style="{StaticResource MyComboBox}"
+                          ItemsSource="{Binding AddCabinet.Cabinets/Shelves}" DisplayMemberPath="ShelfNr" IsSynchronizedWithCurrentItem="True"
+                          SelectedItem="{Binding AddBook.Shelf}" SelectedIndex="{Binding AddBook.ComboBoxIndex, Mode=OneTime}"/>
+                <TextBlock Text="{Binding AddBook.Message, UpdateSourceTrigger=PropertyChanged}" FontSize="10" Margin="0 5 0 5" 
+                           Background="#A3013d0a" Padding="2" RenderTransformOrigin="0.5 0.5" Style="{StaticResource errorTextBlock}"
+                           Visibility="{Binding AddBook.ShowMessage, Converter={StaticResource VisibilityConverter}, FallbackValue=Collapsed}"/>
+                <Button Content="Add" Style="{StaticResource AddEditButtons}" HorizontalAlignment="Center" MinWidth="100"
+                        Command="{Binding AddBook.AddBookCommand}" CommandParameter="value"/>
+            </StackPanel>
+        </GroupBox>
+        <GroupBox Header="Copy" Grid.Row="0" Grid.Column="2" Style="{StaticResource groupBoxStyle}">
+            <StackPanel Margin="10">
+                <TextBlock Text="Book" Margin="0 0 0 5"/>
+                <ComboBox   Margin="0 0 0 5" ItemsSource="{Binding AddBook.Books}" DisplayMemberPath="Title" 
+                            SelectedItem="{Binding AddCopy.Book, UpdateSourceTrigger=PropertyChanged}"
+                            SelectedIndex="{Binding AddCopy.ComboBoxIndex, Mode=OneTime}"
+                            ItemContainerStyle="{StaticResource ComboBoxItemContainerStyle}" Style="{StaticResource MyComboBox}"/>
+                <TextBlock Text="State" Margin="0 0 0 5"/>
+                <ComboBox Margin="0 0 0 5" ItemsSource="{Binding AddCopy.States, FallbackValue=Good}" 
+                          SelectedItem="{Binding AddCopy.State, UpdateSourceTrigger=PropertyChanged}"
+                          SelectedIndex="{Binding AddCopy.ComboBoxIndex, Mode=OneTime}"
+                          ItemContainerStyle="{StaticResource ComboBoxItemContainerStyle}"  Style="{StaticResource MyComboBox}"/>
+                <Button Content="Add" Style="{StaticResource AddEditButtons}" Command="{Binding AddCopy.AddCopyCommand}" 
+                        CommandParameter="value"/>
+            </StackPanel>
+        </GroupBox>
+        <GroupBox Header="Employee" Grid.Row="1" Grid.Column="2" Grid.RowSpan="2" Height="340" VerticalAlignment="Top" 
+                  Style="{StaticResource groupBoxStyle}">
+            <StackPanel Margin="10">
+                <TextBlock Text="First name:" Margin="0 0 0 5"/>
+                <TextBox x:Name="FNtxtBox" Text="{Binding AddEmployee.FirstName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, 
+                    ValidatesOnNotifyDataErrors=True}"/>
+                <TextBlock Text="Last name:" Margin="0 0 0 5"/>
+                <TextBox Text="{Binding AddEmployee.LastName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, 
+                    ValidatesOnNotifyDataErrors=True}"/>
+                <TextBlock Text="Birthdate:" Margin="0 0 0 5"/>
+                <DatePicker CalendarStyle="{StaticResource CalendarStyle1}" Style="{StaticResource DatePickerStyle1}"
+                            SelectedDate="{Binding AddEmployee.Birthdate, Mode=TwoWay, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
+                             Margin="0 0 0 10"
+                            Tag="{Binding AddEmployee.Today, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
+                <TextBlock Text="{Binding AddEmployee.Message, UpdateSourceTrigger=PropertyChanged}" FontSize="10" Margin="0 5 0 5" 
+                           Background="#A3013d0a" Padding="2" RenderTransformOrigin="0.5 0.5" Style="{StaticResource errorTextBlock}"
+                           Visibility="{Binding AddEmployee.ShowMessage, Converter={StaticResource VisibilityConverter}, FallbackValue=Collapsed}"/>
+                <Button Content="Add" Style="{StaticResource AddEditButtons}" Command="{Binding AddEmployee.AddEmployeeCommand}" 
+                        CommandParameter="{Binding ElementName=FNtxtBox, Path=Text}"/>
+            </StackPanel>
+        </GroupBox>
+    </Grid>
+</UserControl>

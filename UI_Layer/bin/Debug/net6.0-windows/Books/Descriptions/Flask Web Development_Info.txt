@@ -1,0 +1,15 @@
+ISBN_13: 9781491991695
+ISBN_10: 1491991690
+Page count: 316
+Published: March 5, 2018
+Publisher: O'Reilly Media
+Language: English
+Author: Miguel Grinberg
+Description: 
+Take full creative control of your web applications with Flask, the Python-based microframework. With the second edition of this hands-on book, you’ll learn the framework from the ground up by developing, step-by-step, a real-world project created by author Miguel Grinberg. This refreshed edition accounts for important technology changes that have occurred in the past three years.
+
+You’ll learn the framework’s core functionality, as well as how to extend applications with advanced web techniques such as database migration and web service communication. The first part of each chapter provides you with reference and background for the topic in question, while the second part guides you though a hands-on implementation of the topic.
+
+If you have Python experience, this book shows you how to take advantage of the creative freedom Flask provides.
+
+Source: Publisher

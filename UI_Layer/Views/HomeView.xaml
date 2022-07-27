@@ -1,0 +1,28 @@
+﻿<UserControl x:Class="UI_Layer.Views.HomeView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:UI_Layer.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800" >
+    <Control.Resources>
+        <!--<BitmapImage x:Key="background" UriSource="/Images/MainWindow/HomeBackground_02.jpg"/>-->
+        <!--<FormatConvertedBitmap x:Key="convertImageToGray" Source="{StaticResource background}" DestinationFormat="Gray32Float"/>-->
+    </Control.Resources>
+    <!--<UserControl.Background>
+        <ImageBrush ImageSource="/Images/MainWindow/HomeBackground_02.jpg"/>
+    </UserControl.Background>-->
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <!--<TextBlock Text="Home View" FontSize="48" HorizontalAlignment="Center" VerticalAlignment="Center"/>-->
+        <!--<Button Grid.Row="0" Content="Categories View" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="48" Padding="10" Foreground="White" FontWeight="Bold"
+                Command="{Binding NavigateCategoriesCommand}" MinWidth="200" Width="534" MinHeight="60" Height="236" Style="{StaticResource HomeButtonsStyle}">
+            --><!--<Button.Effect>
+                <DropShadowEffect BlurRadius="10" ShadowDepth="0" Color="Red" Opacity="1"/>
+            </Button.Effect>--><!--
+        </Button>-->
+    </Grid>
+</UserControl>

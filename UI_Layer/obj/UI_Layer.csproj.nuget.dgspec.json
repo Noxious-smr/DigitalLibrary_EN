@@ -1,0 +1,199 @@
+{
+  "format": 1,
+  "restore": {
+    "D:\\Programming\\Csharp\\DotNet\\WPF\\Projekts\\IHK_Projekt\\DigitalLibrary(En)\\UI_Layer\\UI_Layer.csproj": {}
+  },
+  "projects": {
+    "D:\\Programming\\Csharp\\DotNet\\WPF\\Projekts\\IHK_Projekt\\DigitalLibrary(En)\\DataAccess\\DataAccess.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Programming\\Csharp\\DotNet\\WPF\\Projekts\\IHK_Projekt\\DigitalLibrary(En)\\DataAccess\\DataAccess.csproj",
+        "projectName": "DataAccess",
+        "projectPath": "D:\\Programming\\Csharp\\DotNet\\WPF\\Projekts\\IHK_Projekt\\DigitalLibrary(En)\\DataAccess\\DataAccess.csproj",
+        "packagesPath": "C:\\Users\\Noxio\\.nuget\\packages\\",
+        "outputPath": "D:\\Programming\\Csharp\\DotNet\\WPF\\Projekts\\IHK_Projekt\\DigitalLibrary(En)\\DataAccess\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Noxio\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0-windows7.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0-windows7.0": {
+            "targetAlias": "net6.0-windows",
+            "projectReferences": {
+              "D:\\Programming\\Csharp\\DotNet\\WPF\\Projekts\\IHK_Projekt\\DigitalLibrary(En)\\DomainLayer\\DomainLayer.csproj": {
+                "projectPath": "D:\\Programming\\Csharp\\DotNet\\WPF\\Projekts\\IHK_Projekt\\DigitalLibrary(En)\\DomainLayer\\DomainLayer.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0-windows7.0": {
+          "targetAlias": "net6.0-windows",
+          "dependencies": {
+            "System.Data.SqlClient": {
+              "target": "Package",
+              "version": "[4.8.3, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            },
+            "Microsoft.WindowsDesktop.App.WPF": {
+              "privateAssets": "none"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\Programming\\Csharp\\DotNet\\WPF\\Projekts\\IHK_Projekt\\DigitalLibrary(En)\\DomainLayer\\DomainLayer.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Programming\\Csharp\\DotNet\\WPF\\Projekts\\IHK_Projekt\\DigitalLibrary(En)\\DomainLayer\\DomainLayer.csproj",
+        "projectName": "DomainLayer",
+        "projectPath": "D:\\Programming\\Csharp\\DotNet\\WPF\\Projekts\\IHK_Projekt\\DigitalLibrary(En)\\DomainLayer\\DomainLayer.csproj",
+        "packagesPath": "C:\\Users\\Noxio\\.nuget\\packages\\",
+        "outputPath": "D:\\Programming\\Csharp\\DotNet\\WPF\\Projekts\\IHK_Projekt\\DigitalLibrary(En)\\DomainLayer\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Noxio\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0-windows7.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0-windows7.0": {
+            "targetAlias": "net6.0-windows",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0-windows7.0": {
+          "targetAlias": "net6.0-windows",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            },
+            "Microsoft.WindowsDesktop.App.WPF": {
+              "privateAssets": "none"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\Programming\\Csharp\\DotNet\\WPF\\Projekts\\IHK_Projekt\\DigitalLibrary(En)\\UI_Layer\\UI_Layer.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Programming\\Csharp\\DotNet\\WPF\\Projekts\\IHK_Projekt\\DigitalLibrary(En)\\UI_Layer\\UI_Layer.csproj",
+        "projectName": "UI_Layer",
+        "projectPath": "D:\\Programming\\Csharp\\DotNet\\WPF\\Projekts\\IHK_Projekt\\DigitalLibrary(En)\\UI_Layer\\UI_Layer.csproj",
+        "packagesPath": "C:\\Users\\Noxio\\.nuget\\packages\\",
+        "outputPath": "D:\\Programming\\Csharp\\DotNet\\WPF\\Projekts\\IHK_Projekt\\DigitalLibrary(En)\\UI_Layer\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Noxio\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0-windows7.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0-windows7.0": {
+            "targetAlias": "net6.0-windows",
+            "projectReferences": {
+              "D:\\Programming\\Csharp\\DotNet\\WPF\\Projekts\\IHK_Projekt\\DigitalLibrary(En)\\DataAccess\\DataAccess.csproj": {
+                "projectPath": "D:\\Programming\\Csharp\\DotNet\\WPF\\Projekts\\IHK_Projekt\\DigitalLibrary(En)\\DataAccess\\DataAccess.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0-windows7.0": {
+          "targetAlias": "net6.0-windows",
+          "dependencies": {
+            "FontAwesome5": {
+              "target": "Package",
+              "version": "[2.1.6, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            },
+            "Microsoft.WindowsDesktop.App.WPF": {
+              "privateAssets": "none"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.301\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

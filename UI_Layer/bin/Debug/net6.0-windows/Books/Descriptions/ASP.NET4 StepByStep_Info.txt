@@ -1,0 +1,15 @@
+ISBN_13: 9780735646445
+ISBN_10: 0735646449
+Page count: 608
+Published: April 30, 2010
+Publisher: Microsoft Press
+Language: English
+Author: George Shepherd
+Description: 
+Teach yourself the fundamentals of Web development with ASP.NET 4-one step at a time. With STEP BY STEP, you get the guidance and learn-by-doing examples you need to start building Web applications and Web services in the Microsoft Visual Studio® 2010 environment. The author-a highly regarded programming expert, writer, and instructor-illuminates ASP.NET features through practical examples that help developers quickly grasp concepts and apply techniques to the real world. The book also includes a companion CD with code samples, data sets, and a fully searchable eBook.
+
+A Note Regarding the CD or DVD
+
+The print version of this book ships with a CD or DVD. For those customers purchasing one of the digital formats in which this book is available, we are pleased to offer the CD/DVD content as a free download via O'Reilly Media's Digital Distribution services. To download this content, please visit O'Reilly's web site, search for the title of this book to find its catalog page, and click on the link below the cover image (Examples, Companion Content, or Practice Files). Note that while we provide as much of the media content as we are able via free download, we are sometimes limited by licensing restrictions. Please direct any questions or concerns to booktech@oreilly.com.
+
+Source: Publisher
